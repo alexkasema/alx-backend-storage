@@ -12,3 +12,10 @@ Context: Make an attribute unique directly in the table schema will enforced you
 ## 1-country_users.sql
 In the above table add the following attribute
 * country, enumeration of countries: US, CO and TN, never null (= default will be the first element of the enumeration, here US)
+## 2-fans.sql
+Write a SQL script that ranks country origins of bands, ordered by the number of (non-unique) fans
+
+Requirements:
+* Column names must be: origin and nb_fans
+* Your script can be executed on any database
+Context: Calculate/compute something is always power intensive… better to distribute the load!
