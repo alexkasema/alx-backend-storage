@@ -31,3 +31,8 @@ Write a SQL script that creates a trigger that decreases the quantity of an item
 Quantity in the table items can be negative.
 
 Context: Updating multiple tables for one action from your application can generate issue: network disconnection, crash, etc… to keep your data in a good shape, let MySQL do it for you!
+## 5-valid_email.sql
+Email validation to sent
+Write a SQL script that creates a trigger that resets the attribute valid_email only when the email has been changed.
+
+Context: Nothing related to MySQL, but perfect for user email validation - distribute the logic to the database itself!
