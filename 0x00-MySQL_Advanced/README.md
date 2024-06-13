@@ -54,3 +54,9 @@ Requirements:
 
 Procedure ComputeAverageScoreForUser is taking 1 input:
 user_id, a users.id value (you can assume user_id is linked to an existing users)
+## 8-index_my_names.sql
+Write a SQL script that creates an index idx_name_first on the table names and the first letter of name.
+
+Requirements:
+Only the first letter of name must be indexed
+Context: Index is not the solution for any performance issue, but well used, it’s really powerful!
