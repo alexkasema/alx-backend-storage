@@ -9,3 +9,7 @@ Write a script that inserts a document in the collection school:
 
 The document must have one attribute name with value “Holberton school”
 The database name will be passed as option of mongo command (cat 2-insert | mongo my_db)
+## 3-all
+Write a script that lists all documents in the collection school:
+
+The database name will be passed as option of mongo command
