@@ -8,12 +8,4 @@ def schools_by_topic(mongo_collection, topic):
     mongo_collection will be the pymongo collection object
     topic (string) will be topic searched
     """
-    filtered_topics = {
-        'topic': {
-            '$elemMatch': {
-                '$eq': topic,
-                },
-            },
-    }
-
-    return [doc for doc in mongo_collection.find(filtered_topics)]
+    return [doc for doc in mongo_collection.find({'topics': {'$in': [topic]}})]
