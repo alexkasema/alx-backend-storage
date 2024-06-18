@@ -56,3 +56,8 @@ Write a Python function that returns the list of school having a specific topic:
 Prototype: def schools_by_topic(mongo_collection, topic):
 mongo_collection will be the pymongo collection object
 topic (string) will be topic searched
+## 100-find
+Regex filter
+Write a script that lists all documents with name starting by Holberton in the collection school:
+
+The database name will be passed as option of mongo command
