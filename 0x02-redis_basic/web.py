@@ -26,7 +26,11 @@ def count_calls(method: Callable) -> Callable:
         client.incr("count:{}".format(url))
 
         """ call the original method """
-        return method(url, *args, **kwargs)
+        result = method(url, *args, **kwargs)
+
+        client.set("count:{}".format(url), 0)
+
+        return result
 
     return wrapper
 
