@@ -9,7 +9,7 @@ from functools import wraps
 
 def count_calls(method: Callable) -> Callable:
     """
-    Decoratoe that counts the number of times a method is called
+    Decorator that counts the number of times a method is called
     Args:
         method: The method to be decorated.
     Returns:
@@ -25,6 +25,33 @@ def count_calls(method: Callable) -> Callable:
     return wrapper
 
 
+def call_history(method: Callable) -> Callable:
+    """
+    Decorator that stores the history of inputs and outputs for a method.
+    Args:
+        method: The method to be decorated.
+    Returns:
+        A decorated method that logs its input parameters and output to Redis.
+    """
+    @wraps(method)
+    def wrapper(self, *args, **kwargs):
+        """ logs input and output to Redis """
+        input_key = "{}:inputs".format(method.__qualname__)
+        output_key = "{}:outputs".format(method.__qualname__)
+
+        if isinstance(self._redis, redis.Redis):
+            self._redis.rpush(input_key, str(args))
+
+        output = method(self, *args, **kwargs)
+
+        if isinstance(self._redis, redis.Redis):
+            self._redis.rpush(output_key, output)
+
+        return output
+
+    return wrapper
+
+
 class Cache:
     """ Stores data in the redis database """
     def __init__(self) -> None:
@@ -32,6 +59,7 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb()
 
+    @call_history
     @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """
